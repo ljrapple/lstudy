@@ -1,4 +1,4 @@
-package com.ljr.com.lapplication.adapter;
+package com.ljr.study.adapter;
 
 import android.view.ViewGroup;
 

@@ -1,4 +1,4 @@
-package com.ljr.com.lapplication;
+package com.ljr.study;
 
 import android.app.Application;
 import android.content.Context;

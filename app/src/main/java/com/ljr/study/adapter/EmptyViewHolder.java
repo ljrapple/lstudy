@@ -1,10 +1,10 @@
-package com.ljr.com.lapplication.adapter;
+package com.ljr.study.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.ljr.com.lapplication.R;
-import com.ljr.com.lapplication.utils.App;
+import com.ljr.study.R;
+import com.ljr.study.utils.App;
 
 public class EmptyViewHolder extends BaseViewHolder {
     private EmptyViewHolder(View itemView) {

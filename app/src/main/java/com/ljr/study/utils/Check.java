@@ -4,7 +4,7 @@
 //
 // This file is an original work developed by Opera Software ASA
 
-package com.ljr.com.lapplication.utils;
+package com.ljr.study.utils;
 
 import java.util.Locale;
 

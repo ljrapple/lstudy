@@ -1,9 +1,9 @@
-package com.ljr.com.lapplication.adapter;
+package com.ljr.study.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.ljr.com.lapplication.utils.Check;
+import com.ljr.study.utils.Check;
 
 public class ItemAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
