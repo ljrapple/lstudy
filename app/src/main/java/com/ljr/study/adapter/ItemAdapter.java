@@ -10,7 +10,7 @@ public class ItemAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private final ItemsViewHolderFactory mItemsViewHolderFactory;
     private final Section mSection;
 
-    ItemAdapter(ItemsViewHolderFactory factory, Section section) {
+    public ItemAdapter(ItemsViewHolderFactory factory, Section section) {
         Check.isNotNull(factory);
         mItemsViewHolderFactory = factory;
         mSection = section;
@@ -30,5 +30,10 @@ public class ItemAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public int getItemCount() {
         return mSection.getItemsList().size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return mSection.getItemsList().get(position).getViewType();
     }
 }
