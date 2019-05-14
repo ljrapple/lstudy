@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.ljr.study.adapter.BaseItem;
 import com.ljr.study.adapter.ItemIdGenerator;
+import com.ljr.study.utils.Check;
 
 public class FirstPageItem extends BaseItem {
 
@@ -12,10 +13,15 @@ public class FirstPageItem extends BaseItem {
 
     public final String name;
     public final String activityName;
+    public int layoutId;
 
-    public FirstPageItem(String name, String activityName) {
-        this.name = name;
-        this.activityName = activityName;
+    public FirstPageItem(Object... objects) {
+        Check.isTrue(objects.length >= 2);
+        this.name = (String) objects[0];
+        this.activityName = (String) objects[1];
+        if (objects.length > 2) {
+            layoutId = (int) objects[2];
+        }
     }
 
     @Override
@@ -27,6 +33,9 @@ public class FirstPageItem extends BaseItem {
         Intent intent = new Intent();
         intent.setClassName(context.getPackageName(), activityName);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (layoutId != 0) {
+            intent.putExtra("layoutId", layoutId);
+        }
         context.startActivity(intent);
     }
 }
