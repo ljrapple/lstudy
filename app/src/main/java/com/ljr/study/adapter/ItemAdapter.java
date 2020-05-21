@@ -1,6 +1,6 @@
 package com.ljr.study.adapter;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.ljr.study.utils.Check;

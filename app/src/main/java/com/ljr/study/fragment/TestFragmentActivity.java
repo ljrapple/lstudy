@@ -1,37 +1,76 @@
 package com.ljr.study.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
+import android.os.Looper;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
+
+import com.ljr.study.BTestLiftActivity;
 import com.ljr.study.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestFragmentActivity extends FragmentActivity {
+    class MReceive extends BroadcastReceiver {
 
-    FragmentManager fm;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.d("FragmentAct1", "FragmentAct  --- onCreate");
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_fragment);
-        test2();
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("FragmentAct1",
+                    "FragmentAct  --- onReceive  " + (Looper.getMainLooper() == Looper.myLooper()));
+            recreate();
+        }
     }
 
-    private void test1() {
+    FragmentManager fm;
+    MReceive mMReceive;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d("FragmentAct1", "FragmentAct  --- onCreate" + getApplication());
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.test_fragment);
+        test1("test1");
+        test1("test2");
+        test1("test3");
+        test1("test5");
+        test1("test4");
+//        Thread.dumpStack();
+        Intent intent = new Intent(this, BTestLiftActivity.class);
+        Log.e("identityHashCode  ",
+                "identityHashCode  test i = " + System.identityHashCode(intent));
+        startActivity(intent);
+        mMReceive= new MReceive();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.ljr.study.mReceive");
+        registerReceiver(mMReceive, filter);
+    }
+
+    private void test1(String name) {
         fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fragment_container, TestFragment.newInstance("test"));
+        Fragment f1 = TestFragment.newInstance(name);
+        ft.replace(R.id.fragment_container, f1, name);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    private void testR1(String name, String tag) {
+        fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment f1 = TestFragment.newInstance(name);
+        ft.replace(R.id.fragment_container, f1);
+        ft.addToBackStack(name);
         ft.commit();
     }
 
@@ -115,6 +154,7 @@ public class TestFragmentActivity extends FragmentActivity {
 
     @Override
     protected void onDestroy() {
+        unregisterReceiver(mMReceive);
         super.onDestroy();
         Log.d("FragmentAct1", "FragmentAct   --- onDestroy");
     }

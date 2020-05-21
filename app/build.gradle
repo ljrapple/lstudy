@@ -1,28 +1,52 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "com.ljr.study"
+        applicationId "com.ljr.study1"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs 'en'
     }
     buildTypes {
+        debug {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    productFlavors {
+    }
+    resourcePrefix 'app_'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.android.support:recyclerview-v7:26.+'
-    implementation 'com.android.support:support-v4:26.+'
+    //ADD THESE LINES:
+    // Espresso 相关的引用
+    compile 'androidx.annotation:annotation:1.0.0'
+    androidTestCompile 'androidx.annotation:annotation:1.0.0'
+    androidTestCompile('androidx.test.espresso:espresso-core:3.1.0') {
+        exclude group: 'javax.inject'
+    }
+    androidTestCompile 'androidx.test.espresso:espresso-intents:3.1.0'
+    androidTestCompile 'androidx.test.espresso:espresso-contrib:3.1.0'
+    androidTestCompile 'androidx.test.ext:junit:1.1.1'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation project(path: ':mutil')
+    implementation project(path: ':arrtest')
 }

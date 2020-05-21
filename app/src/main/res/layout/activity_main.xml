@@ -1,24 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ljr.study.ui.MyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
     tools:context="com.ljr.study.MainActivity">
-
-    <View
-        android:id="@+id/rotation"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:background="@android:color/holo_red_light" />
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        tools:context="com.ljr.study.MainActivity">
 
-    <com.ljr.study.main.DrawViewGroup
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        <View
+            android:id="@+id/rotation"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="@android:color/holo_red_light" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/main_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.ljr.study.main.DrawViewGroup
+                android:id="@+id/draw_view"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+            <com.ljr.study.main.DrawViewGroup
+                android:id="@+id/draw_view1"
+                android:layout_toRightOf="@id/draw_view"
+                android:layout_marginLeft="-50dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</com.ljr.study.ui.MyScrollView>

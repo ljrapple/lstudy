@@ -1,6 +1,6 @@
 package com.ljr.study.main;
 
-import android.support.v4.widget.Space;
+import androidx.legacy.widget.Space;
 import android.view.View;
 import android.widget.TextView;
 

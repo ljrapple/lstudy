@@ -1,2 +1,5 @@
 <resources>
+    <style name="app_test">
+        <item name="app_rate">1</item>
+    </style>
 </resources>

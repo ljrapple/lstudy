@@ -5,8 +5,9 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
 
 import com.ljr.study.utils.Logger;
 
@@ -39,12 +40,12 @@ public class TestService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("TestServiceL","TestServiceL  onCreate");
+        Log.d("TestServiceL","TestServiceL  onCreate" + getApplication());
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("TestServiceL","TestServiceL  onStartCommand");
+        Log.d("TestServiceL","TestServiceL  onStartCommand " +  System.identityHashCode(intent));
         return super.onStartCommand(intent, flags, startId);
     }
 

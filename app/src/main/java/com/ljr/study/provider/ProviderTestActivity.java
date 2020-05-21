@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Debug;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import com.ljr.study.R;
 import com.ljr.study.utils.Logger;

@@ -8,8 +8,8 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.ljr.study.LApplication;
 import com.ljr.study.utils.Logger;
@@ -35,6 +35,7 @@ public class TestContentProvider extends ContentProvider {
 
     static {
         sUriMatcher.addURI(AUTHOR, "people/*", 1);
+        Logger.setTag("TestContentProvider");
     }
 
     public TestContentProvider() {

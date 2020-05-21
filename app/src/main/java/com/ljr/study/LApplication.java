@@ -2,8 +2,11 @@ package com.ljr.study;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.util.Log;
 
+import com.ljr.study.service.TestService;
 import com.ljr.study.ui.LanguageActivity;
 import com.ljr.study.utils.Logger;
 
@@ -15,14 +18,16 @@ public class LApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        Logger.e("LApplication attachBaseContext");
+        Log.e("LApplication","LApplication attachBaseContext" + this);
         sApplication = this;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.e("LApplication onCreate");
+        Intent intent = new Intent(this, TestService.class);
+        Logger.e("LApplication onCreate  " + System.identityHashCode(intent));
+        startService(intent);
     }
 
     public static Application getInstance() {
